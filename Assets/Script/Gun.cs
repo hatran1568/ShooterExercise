@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
     public float radius;
     public GameObject bulletPrefab;
     private AudioSource audioData;
-    private BulletType bulletType = BulletType.CONSECUTIVE;
+    private BulletType bulletType = BulletType.DEFAULT;
     private Transform pivot;
 
     void Start()
@@ -34,6 +34,8 @@ public class Gun : MonoBehaviour
                 case BulletType.DEFAULT:
                     {
                         SpawnBullet(0, 1, 0);
+                        SpawnBullet(0, 1, 0);
+                        SpawnBullet(0, 1, 0);
                         break;
                     }
                 case BulletType.SCATTER:
@@ -45,24 +47,23 @@ public class Gun : MonoBehaviour
                     }
                 case BulletType.CONSECUTIVE:
                     {
-                        //SpawnBullet(0, 3, 1);
+                        SpawnBullet(0, 3, 1);
                         break;
                     }
             }
-            
+
             audioData = GetComponent<AudioSource>();
             audioData.Play(0);
-            
         }
 
     }
 
-     public void ChooseBulletDefault()
+    public void ChooseBulletDefault()
     {
         bulletType = BulletType.DEFAULT;
 
     }
-      public void ChooseBulletScatter()
+    public void ChooseBulletScatter()
     {
         bulletType = BulletType.SCATTER;
 
@@ -74,7 +75,7 @@ public class Gun : MonoBehaviour
     }
     private void SpawnBullet(float customAngle, int number, int delay)
     {
-        for(int i = 0; i < number; i++)
+        for (int i = 0; i < number; i++)
         {
             GameObject bullet = Instantiate<GameObject>(bulletPrefab, gameObject.transform.position, gameObject.transform.rotation);
             bullet.tag = "bullet";
@@ -82,13 +83,14 @@ public class Gun : MonoBehaviour
 
             Bullet bullet_script = bullet.GetComponent<Bullet>();
             bullet_body.AddForce(Helper.getVector2DByDegree(-transform.eulerAngles.z + customAngle) * bullet_script.Impulse, ForceMode2D.Force);
+            
             // delay by seconds
             StartCoroutine(Delay(delay));
         }
-        
+
     }
     private IEnumerator Delay(int second)
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
     }
 }
