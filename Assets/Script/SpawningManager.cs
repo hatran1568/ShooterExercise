@@ -5,7 +5,9 @@ using UnityEngine;
 public class SpawningManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject spawn;
+    GameObject normalEnemy;
+    [SerializeField]
+    GameObject sineEnemy;
 
     public int DurationToSpawn = 2;
 
@@ -15,7 +17,6 @@ public class SpawningManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         spawningTimer = gameObject.AddComponent<Timer>();
         spawningTimer.Duration = DurationToSpawn;
         spawningTimer.Run();
@@ -45,8 +46,18 @@ public class SpawningManager : MonoBehaviour
                     spawnPosition = new Vector3(-11, Random.Range(-6, 6), 1);
                     break;
             }
-            GameObject enemy = Instantiate<GameObject>(spawn,
-                spawnPosition, Quaternion.identity);
+            int enemyType = Random.Range(0, 2);
+            switch (enemyType)
+            {
+                case 0:
+                    Instantiate<GameObject>(normalEnemy, spawnPosition, Quaternion.identity);
+                    break;
+                case 1:
+                    Instantiate<GameObject>(sineEnemy, spawnPosition, Quaternion.identity);
+                    break;
+
+            }
+            
             spawningTimer.Run();
         }
     }

@@ -4,31 +4,36 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 2f;
+    public float speed;
     public GameObject explosion;
-    private Vector3 _targetPosition;
+    public int blood;
 
     private void Awake()
     {
         
     }
-    // Start is called before the first frame update
-    void Start()
+    
+    public virtual void OnCollisionOperation(Collision2D collision)
     {
-        _targetPosition = GameObject.Find("/Turret").transform.position;
+        if (collision.gameObject.tag.Equals("turret"))
+        {
+            Destroy(gameObject);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, speed * Time.deltaTime);
-
+        }
+        if (collision.gameObject.tag.Equals("bullet"))
+        {
+            blood--;
+            if (blood <= 0)
+            {
+                Object.Instantiate<GameObject>(explosion, gameObject.transform.position, Quaternion.identity);
+                //Helper.GetGameMonitor().Score += 1;
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Instantiate<GameObject>(explosion, gameObject.transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        OnCollisionOperation(collision);
     }
 }

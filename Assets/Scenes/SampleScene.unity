@@ -550,7 +550,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0286b7b37198fa54b8fcf42d37b1974a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: {fileID: 1343512946545357748, guid: eabf63492ab991b45b847f92a43b8a45, type: 3}
+  normalEnemy: {fileID: 1343512946545357748, guid: eabf63492ab991b45b847f92a43b8a45, type: 3}
+  sineEnemy: {fileID: 4171796988895644071, guid: 49424e5e910ae8f4a92983a79a4eb37f, type: 3}
   DurationToSpawn: 2
 --- !u!20 &519420031
 Camera:
@@ -1177,7 +1178,7 @@ GameObject:
   - component: {fileID: 1351771624}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1283,7 +1284,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &1397808713
 GameObject:
   m_ObjectHideFlags: 0
