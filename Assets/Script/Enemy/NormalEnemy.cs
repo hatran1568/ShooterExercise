@@ -7,7 +7,6 @@ public class NormalEnemy : Enemy
     private Vector3 _targetPosition;
     private void Awake()
     {
-        blood = 1;
     }
 
     void Start()

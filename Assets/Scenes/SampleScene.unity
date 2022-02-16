@@ -552,6 +552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalEnemy: {fileID: 1343512946545357748, guid: eabf63492ab991b45b847f92a43b8a45, type: 3}
   sineEnemy: {fileID: 4171796988895644071, guid: 49424e5e910ae8f4a92983a79a4eb37f, type: 3}
+  bigEnemy: {fileID: 4791182821065920780, guid: fbd4cd5a0f83dae479365e29ff0760ba, type: 3}
   DurationToSpawn: 2
 --- !u!20 &519420031
 Camera:

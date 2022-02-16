@@ -8,7 +8,8 @@ public class SpawningManager : MonoBehaviour
     GameObject normalEnemy;
     [SerializeField]
     GameObject sineEnemy;
-
+    [SerializeField]
+    GameObject bigEnemy;
     public int DurationToSpawn = 2;
 
     Timer spawningTimer;
@@ -46,7 +47,7 @@ public class SpawningManager : MonoBehaviour
                     spawnPosition = new Vector3(-11, Random.Range(-6, 6), 1);
                     break;
             }
-            int enemyType = Random.Range(0, 2);
+            int enemyType = Random.Range(0, 3);
             switch (enemyType)
             {
                 case 0:
@@ -54,6 +55,9 @@ public class SpawningManager : MonoBehaviour
                     break;
                 case 1:
                     Instantiate<GameObject>(sineEnemy, spawnPosition, Quaternion.identity);
+                    break;
+                case 2:
+                    Instantiate<GameObject>(bigEnemy, spawnPosition, Quaternion.identity);
                     break;
 
             }

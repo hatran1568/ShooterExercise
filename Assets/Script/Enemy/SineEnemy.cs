@@ -10,7 +10,6 @@ public class SineEnemy : Enemy
     private void Awake()
     {
         Vector3 _targetPosition = GameObject.Find("/Turret").transform.position;
-        blood = 1;
         distance = -Vector3.Distance(transform.position, _targetPosition);
         angle = Mathf.Atan2(transform.position.y - _targetPosition.y, transform.position.x - _targetPosition.x);
 
