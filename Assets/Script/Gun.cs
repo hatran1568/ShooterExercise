@@ -33,21 +33,21 @@ public class Gun : MonoBehaviour
             {
                 case BulletType.DEFAULT:
                     {
-                        SpawnBullet(0, 1, 0);
-                        SpawnBullet(0, 1, 0);
-                        SpawnBullet(0, 1, 0);
+                        SpawnBullet(0, 1);
+                        SpawnBullet(0, 1);
+                        SpawnBullet(0, 1);
                         break;
                     }
                 case BulletType.SCATTER:
                     {
-                        SpawnBullet(0, 1, 0);
-                        SpawnBullet(-15, 1, 0);
-                        SpawnBullet(15, 1, 0);
+                        SpawnBullet(0, 1);
+                        SpawnBullet(-15, 1);
+                        SpawnBullet(15, 1);
                         break;
                     }
                 case BulletType.CONSECUTIVE:
                     {
-                        SpawnBullet(0, 3, 1);
+                        SpawnBullet(0, 3);
                         break;
                     }
             }
@@ -73,24 +73,18 @@ public class Gun : MonoBehaviour
         bulletType = BulletType.CONSECUTIVE;
 
     }
-    private void SpawnBullet(float customAngle, int number, int delay)
+    private void SpawnBullet(float customAngle, int number)
     {
         for (int i = 0; i < number; i++)
         {
-            GameObject bullet = Instantiate<GameObject>(bulletPrefab, gameObject.transform.position, gameObject.transform.rotation);
+            Vector3 bulletPosition = new Vector3(transform.position.x * (2+i), transform.position.y * (2+i), 0);
+            GameObject bullet = Instantiate<GameObject>(bulletPrefab, bulletPosition, gameObject.transform.rotation);
             bullet.tag = "bullet";
             Rigidbody2D bullet_body = bullet.GetComponent<Rigidbody2D>();
 
             Bullet bullet_script = bullet.GetComponent<Bullet>();
             bullet_body.AddForce(Helper.getVector2DByDegree(-transform.eulerAngles.z + customAngle) * bullet_script.Impulse, ForceMode2D.Force);
-            
-            // delay by seconds
-            StartCoroutine(Delay(delay));
         }
 
-    }
-    private IEnumerator Delay(int second)
-    {
-        yield return new WaitForSeconds(1);
     }
 }
