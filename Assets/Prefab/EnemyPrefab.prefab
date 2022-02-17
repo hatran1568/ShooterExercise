@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7c8c3a280d23847b41ddafa5e05aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
   explosion: {fileID: 139366, guid: 9f5abe04d9ffcdc4885fc4756c6a70f8, type: 3}
   blood: 1
 --- !u!50 &6516548283558464678
